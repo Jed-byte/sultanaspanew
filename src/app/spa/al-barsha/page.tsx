@@ -215,12 +215,15 @@ export default function AlBarshaPage() {
                           </p>
                         )}
                         {service.name !== "Add-on Loofa" && (
-                          <button 
-                            className="text-white font-medium py-2 px-4 rounded-full transition-colors duration-200 text-sm hover:opacity-90"
+                          <a 
+                            href="https://sultanaspa.zenoti.com/webstoreNew/services"
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            className="text-white font-medium py-2 px-4 rounded-full transition-colors duration-200 text-sm hover:opacity-90 inline-block"
                             style={{backgroundColor: '#5D4037'}}
                           >
                             Book Now
-                          </button>
+                          </a>
                         )}
                       </div>
                     </div>
