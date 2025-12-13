@@ -77,8 +77,8 @@ export default function AboutPage() {
               {images.map((image, index) => (
                 <div 
                   key={index}
-                  className="relative aspect-square overflow-hidden rounded-lg shadow-md hover:shadow-xl transition-shadow duration-300 group"
-                  style={{border: '1px solid #C4A484', borderOpacity: 0.3}}
+                  className="relative aspect-square overflow-hidden rounded-lg shadow-md hover:shadow-xl transition-shadow duration-300 group border"
+                  style={{borderColor: 'rgba(196, 164, 132, 0.3)'}}
                 >
                   <Image
                     src={image.src}

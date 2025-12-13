@@ -18,7 +18,7 @@ const branches = [
   },
   {
     name: "Al Andalus Hammam & Barber",
-    location: "Traditional Hammam Experience",
+    location: "Al Barsha",
     description: "Authentic Moroccan wellness rituals and treatments (Men's Only)",
     link: "/spa/al-andalus",
     gradient: "from-amber-100 to-orange-100"
@@ -79,42 +79,53 @@ export default function Home() {
         </div>
 
         <div className="space-y-6">
-          {branches.map((branch) => (
-            <div
-              key={branch.name}
-              className={"group transition-all duration-300 transform hover:scale-[1.02] rounded-2xl shadow-lg hover:shadow-xl border"}
-              style={{ background: 'linear-gradient(to right, #F8F4EF, #F1E4D3)', borderColor: '#C4A484' }}
-            >
-              <div className="p-8">
-                <div className="flex flex-col md:flex-row md:items-center md:justify-between">
-                  <div className="flex-1">
-                    <div className="flex items-center mb-3" style={{color: '#A78A7F'}}>
-                      <MapPin className="h-5 w-5 mr-2" />
-                      <span className="text-sm font-medium">{branch.location}</span>
+          {branches.map((branch) => {
+            const isAlAndalus = branch.name === "Al Andalus Hammam & Barber";
+            return (
+              <div
+                key={branch.name}
+                className={"group transition-all duration-300 transform hover:scale-[1.02] rounded-2xl shadow-lg hover:shadow-xl border"}
+                style={{ 
+                  background: isAlAndalus 
+                    ? 'linear-gradient(to right, #5D4037, #4A3328)' 
+                    : 'linear-gradient(to right, #F8F4EF, #F1E4D3)', 
+                  borderColor: isAlAndalus ? '#C4A484' : '#C4A484' 
+                }}
+              >
+                <div className="p-8">
+                  <div className="flex flex-col md:flex-row md:items-center md:justify-between">
+                    <div className="flex-1">
+                      <div className="flex items-center mb-3" style={{color: isAlAndalus ? '#F8F4EF' : '#A78A7F'}}>
+                        <MapPin className="h-5 w-5 mr-2" />
+                        <span className="text-sm font-medium">{branch.location}</span>
+                      </div>
+                      
+                      <h3 className="text-2xl font-medium mb-2" style={{color: isAlAndalus ? '#F8F4EF' : '#5D4037'}}>
+                        {branch.name}
+                      </h3>
+                      
+                      <p className="mb-4 leading-relaxed" style={{color: isAlAndalus ? '#E8D5C4' : '#A78A7F'}}>
+                        {branch.description}
+                      </p>
                     </div>
                     
-                    <h3 className="text-2xl font-medium mb-2" style={{color: '#5D4037'}}>
-                      {branch.name}
-                    </h3>
-                    
-                    <p className="mb-4 leading-relaxed" style={{color: '#A78A7F'}}>
-                      {branch.description}
-                    </p>
-                  </div>
-                  
-                  <div className="md:ml-6">
-                    <Link 
-                      href={branch.link}
-                      className="w-full md:w-auto text-white font-medium py-3 px-6 rounded-full transition-colors duration-200 shadow-md hover:shadow-lg inline-block text-center"
-                      style={{ backgroundColor: '#5D4037' }}
-                    >
-                      Explore This Location
-                    </Link>
+                    <div className="md:ml-6">
+                      <Link 
+                        href={branch.link}
+                        className="w-full md:w-auto font-medium py-3 px-6 rounded-full transition-colors duration-200 shadow-md hover:shadow-lg inline-block text-center"
+                        style={{ 
+                          backgroundColor: isAlAndalus ? '#F8F4EF' : '#5D4037',
+                          color: isAlAndalus ? '#5D4037' : 'white'
+                        }}
+                      >
+                        Explore This Location
+                      </Link>
+                    </div>
                   </div>
                 </div>
               </div>
-            </div>
-          ))}
+            );
+          })}
         </div>
       </div>
 

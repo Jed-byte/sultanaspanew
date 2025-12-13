@@ -1354,29 +1354,24 @@ export default function AlAndalusPage() {
 						Ready to Experience Luxury?
 					</h3>
 					<p className="text-xl mb-8 opacity-90">
-						Book your appointment today and discover why we're Dubai's premier spa destination
+						Call us today and discover why we're Dubai's premier spa destination
 					</p>
 					<div className="flex flex-col sm:flex-row gap-4 justify-center">
-						<button
-							className="font-medium py-4 px-8 rounded-full transition-colors duration-200 text-lg hover:opacity-90"
-							style={{ backgroundColor: "white", color: "#5D4037" }}
-						>
-							Book Online
-						</button>
-						<button
-							className="border-2 border-white text-white hover:bg-white font-medium py-4 px-8 rounded-full transition-colors duration-200 text-lg"
+						<a
+							href="tel:+97143939692"
+							className="border-2 border-white text-white hover:bg-white font-medium py-4 px-8 rounded-full transition-colors duration-200 text-lg inline-block text-center"
 							style={{ borderColor: "white" }}
 							onMouseEnter={(e) => {
-								(e.target as HTMLButtonElement).style.backgroundColor = "white";
-								(e.target as HTMLButtonElement).style.color = "#5D4037";
+								(e.target as HTMLAnchorElement).style.backgroundColor = "white";
+								(e.target as HTMLAnchorElement).style.color = "#5D4037";
 							}}
 							onMouseLeave={(e) => {
-								(e.target as HTMLButtonElement).style.backgroundColor = "transparent";
-								(e.target as HTMLButtonElement).style.color = "white";
+								(e.target as HTMLAnchorElement).style.backgroundColor = "transparent";
+								(e.target as HTMLAnchorElement).style.color = "white";
 							}}
 						>
 							Call Us Now
-						</button>
+						</a>
 					</div>
 				</div>
 			</div>
