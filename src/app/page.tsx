@@ -36,13 +36,32 @@ export default function Home() {
         />
         
         <div className="relative z-10 text-center px-4 max-w-4xl mx-auto">
-          <h1 className="text-5xl md:text-7xl font-light mb-6 tracking-wide" style={{color: '#5D4037'}}>
-            Sultana Spa
+          {/* Decorative top border */}
+          <div className="flex items-center justify-center mb-8">
+            <div className="w-16 md:w-24 h-px" style={{backgroundColor: '#C4A484', opacity: 0.5}}></div>
+            <div className="mx-4 w-2 h-2 rounded-full" style={{backgroundColor: '#C4A484'}}></div>
+            <div className="w-16 md:w-24 h-px" style={{backgroundColor: '#C4A484', opacity: 0.5}}></div>
+          </div>
+          
+          <h1 className="text-5xl md:text-7xl font-light mb-4 tracking-wide relative" style={{color: '#5D4037'}}>
+            <span className="relative inline-block">
+              Sultana Spa
+              <div className="absolute -bottom-2 left-1/2 transform -translate-x-1/2 w-20 md:w-32 h-px" style={{backgroundColor: '#5D4037', opacity: 0.3}}></div>
+            </span>
           </h1>
-          <p className="text-xl md:text-2xl mb-8 font-light" style={{color: '#A78A7F'}}>
+          
+          <p className="text-xl md:text-2xl mb-6 font-light tracking-wide" style={{color: '#8F7568', letterSpacing: '0.05em'}}>
             Experience luxury wellness at our exclusive locations
           </p>
-          <p className="text-lg mb-12 max-w-2xl mx-auto" style={{color: '#A78A7F'}}>
+          
+          {/* Decorative bottom border */}
+          <div className="flex items-center justify-center mb-8">
+            <div className="w-12 md:w-20 h-px" style={{backgroundColor: '#C4A484', opacity: 0.4}}></div>
+            <div className="mx-3 w-1.5 h-1.5 rounded-full" style={{backgroundColor: '#C4A484', opacity: 0.6}}></div>
+            <div className="w-12 md:w-20 h-px" style={{backgroundColor: '#C4A484', opacity: 0.4}}></div>
+          </div>
+          
+          <p className="text-lg mb-12 max-w-2xl mx-auto leading-relaxed" style={{color: '#A78A7F'}}>
             Choose your sanctuary of relaxation and rejuvenation
           </p>
         </div>
@@ -84,12 +103,12 @@ export default function Home() {
                   </div>
                   
                   <div className="md:ml-6">
-                    <Link href={branch.link}>
-                      <button className="w-full md:w-auto text-white font-medium py-3 px-6 rounded-full transition-colors duration-200 shadow-md hover:shadow-lg"
-                        style={{ backgroundColor: '#5D4037' }}
-                      >
-                        Explore This Location
-                      </button>
+                    <Link 
+                      href={branch.link}
+                      className="w-full md:w-auto text-white font-medium py-3 px-6 rounded-full transition-colors duration-200 shadow-md hover:shadow-lg inline-block text-center"
+                      style={{ backgroundColor: '#5D4037' }}
+                    >
+                      Explore This Location
                     </Link>
                   </div>
                 </div>
@@ -103,22 +122,58 @@ export default function Home() {
       <div className="py-16 px-4" style={{ background: 'linear-gradient(to right, #C4A484, #A78A7F)' }}>
         <div className="max-w-4xl mx-auto text-center text-white">
           <h3 className="text-3xl font-light mb-8">Contact Us</h3>
-          <div className="grid md:grid-cols-3 gap-8">
+          <div className="grid md:grid-cols-3 gap-8 mb-12">
             <div className="flex flex-col items-center">
               <Phone className="h-8 w-8 mb-4" />
               <h4 className="font-medium mb-2">Call Us</h4>
-              <p className="opacity-90">+971 4 XXX XXXX</p>
+              <a 
+                href="tel:+97145652323"
+                className="opacity-90 hover:opacity-100 transition-opacity"
+              >
+                +971 4 565 2323
+              </a>
             </div>
             <div className="flex flex-col items-center">
               <MessageSquare className="h-8 w-8 mb-4" />
               <h4 className="font-medium mb-2">WhatsApp</h4>
-              <p className="opacity-90">+971 50 XXX XXXX</p>
+              <a 
+                href="https://wa.me/971524420053"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="opacity-90 hover:opacity-100 transition-opacity"
+              >
+                +971 52 442 0053
+              </a>
             </div>
             <div className="flex flex-col items-center">
               <Instagram className="h-8 w-8 mb-4" />
               <h4 className="font-medium mb-2">Follow Us</h4>
-              <p className="opacity-90">@sultanaspa</p>
+              <a 
+                href="https://www.instagram.com/sultanaspahammamdubai/"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="opacity-90 hover:opacity-100 transition-opacity"
+              >
+                @sultanaspahammamdubai
+              </a>
             </div>
+          </div>
+          
+          {/* Footer Links */}
+          <div className="flex flex-wrap justify-center gap-4 pt-8 border-t border-white border-opacity-20">
+            <Link 
+              href="/privacy-policy"
+              className="text-white opacity-90 hover:opacity-100 transition-opacity text-sm font-medium"
+            >
+              Privacy Policy
+            </Link>
+            <span className="text-white opacity-50">|</span>
+            <Link 
+              href="/about"
+              className="text-white opacity-90 hover:opacity-100 transition-opacity text-sm font-medium"
+            >
+              About
+            </Link>
           </div>
         </div>
       </div>

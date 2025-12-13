@@ -1162,7 +1162,7 @@ export default function AlAndalusPage() {
 							</h3>
 							<div className="space-y-1 text-sm">
 								<a
-									href="https://maps.app.goo.gl/vrNKxkqEb7eG7tDGA"
+									href="https://www.google.com/maps/place/Al+Andalus+Barber+%26+Hammam+Spa/@25.1113661,55.1895418,476m/data=!3m1!1e3!4m6!3m5!1s0x3e5f6b8b573cd6a1:0x2f7c44be74afaca4!8m2!3d25.111796!4d55.1902288!16s%2Fg%2F11l29z_8vj?entry=ttu&g_ep=EgoyMDI1MTIwOS4wIKXMDSoASAFQAw%3D%3D"
 									target="_blank"
 									rel="noopener noreferrer"
 									className="block text-white font-medium py-2 px-4 rounded-full transition-colors duration-200 text-xs text-center hover:opacity-90"
@@ -1238,7 +1238,7 @@ export default function AlAndalusPage() {
 									</span>
 								</div>
 								<a
-									href="https://maps.app.goo.gl/vrNKxkqEb7eG7tDGA"
+									href="https://www.google.com/maps/place/Al+Andalus+Barber+%26+Hammam+Spa/@25.1113661,55.1895418,476m/data=!3m1!1e3!4m6!3m5!1s0x3e5f6b8b573cd6a1:0x2f7c44be74afaca4!8m2!3d25.111796!4d55.1902288!16s%2Fg%2F11l29z_8vj?entry=ttu&g_ep=EgoyMDI1MTIwOS4wIKXMDSoASAFQAw%3D%3D"
 									target="_blank"
 									rel="noopener noreferrer"
 									className="block text-white font-medium py-2 px-4 rounded-full transition-colors duration-200 text-center hover:opacity-90 text-sm"

@@ -403,7 +403,7 @@ export default function DowntownPage() {
 							</h3>
 							<div className="space-y-1 text-sm">
 								<a 
-									href="https://maps.app.goo.gl/vrNKxkqEb7eG7tDGA" 
+									href="https://www.google.com/maps/search/?api=1&query=Neer+al+Manzil+hotel,+Yansoon+9+-+Souk+Tamarhind+-+shop+16+Sheikh+Mohammed+bin+Rashid+Blvd+-+Downtown+Dubai+-+Dubai" 
 									target="_blank" 
 									rel="noopener noreferrer" 
 									className="block text-white font-medium py-2 px-4 rounded-full transition-colors duration-200 text-xs text-center hover:opacity-90"
@@ -469,7 +469,7 @@ export default function DowntownPage() {
 									<span className="font-medium" style={{color: '#5D4037'}}>Location</span>
 								</div>
 								<a
-									href="https://maps.app.goo.gl/vrNKxkqEb7eG7tDGA"
+									href="https://www.google.com/maps/search/?api=1&query=Neer+al+Manzil+hotel,+Yansoon+9+-+Souk+Tamarhind+-+shop+16+Sheikh+Mohammed+bin+Rashid+Blvd+-+Downtown+Dubai+-+Dubai"
 									target="_blank"
 									rel="noopener noreferrer"
 									className="block text-white font-medium py-2 px-4 rounded-full transition-colors duration-200 text-center hover:opacity-90 text-sm"
