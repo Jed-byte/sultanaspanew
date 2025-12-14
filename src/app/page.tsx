@@ -1,5 +1,8 @@
+"use client";
+
 import Link from "next/link";
-import { MapPin, Phone, Instagram, MessageSquare } from "lucide-react";
+import { MapPin, Phone, Instagram, MessageSquare, ChevronDown } from "lucide-react";
+import BreadcrumbSchema from "./components/BreadcrumbSchema";
 
 const branches = [
   {
@@ -26,14 +29,42 @@ const branches = [
 ];
 
 export default function Home() {
+  const scrollToBranches = () => {
+    const branchSection = document.getElementById('branch-selection');
+    if (branchSection) {
+      branchSection.scrollIntoView({ behavior: 'smooth' });
+    }
+  };
+
   return (
-    <div className="min-h-screen bg-white">
+    <>
+      <BreadcrumbSchema
+        items={[
+          { name: "Home", url: "https://sultanaspa.com" }
+        ]}
+      />
+      <div className="min-h-screen bg-white">
       {/* Hero Section */}
       <div className="relative h-screen flex items-center justify-center overflow-hidden">
         <div
           className="absolute inset-0"
           style={{ background: 'linear-gradient(to right, #F8F4EF, #C4A484)' }}
         />
+        
+        {/* Left Arrow */}
+        <button
+          onClick={scrollToBranches}
+          className="absolute left-4 md:left-8 bottom-8 md:bottom-12 z-20 flex flex-col items-center group cursor-pointer transition-opacity hover:opacity-100"
+          aria-label="Scroll to locations"
+        >
+          <ChevronDown 
+            className="h-8 w-8 md:h-10 md:w-10 animate-bounce group-hover:scale-110 transition-transform" 
+            style={{color: '#5D4037', opacity: 0.7}}
+          />
+          <span className="text-xs md:text-sm mt-2 font-light group-hover:opacity-100 transition-opacity" style={{color: '#5D4037', opacity: 0.6}}>
+            Scroll
+          </span>
+        </button>
         
         <div className="relative z-10 text-center px-4 max-w-4xl mx-auto">
           {/* Decorative top border */}
@@ -65,10 +96,25 @@ export default function Home() {
             Choose your sanctuary of relaxation and rejuvenation
           </p>
         </div>
+        
+        {/* Right Arrow */}
+        <button
+          onClick={scrollToBranches}
+          className="absolute right-4 md:right-8 bottom-8 md:bottom-12 z-20 flex flex-col items-center group cursor-pointer transition-opacity hover:opacity-100"
+          aria-label="Scroll to locations"
+        >
+          <ChevronDown 
+            className="h-8 w-8 md:h-10 md:w-10 animate-bounce group-hover:scale-110 transition-transform" 
+            style={{color: '#5D4037', opacity: 0.7}}
+          />
+          <span className="text-xs md:text-sm mt-2 font-light group-hover:opacity-100 transition-opacity" style={{color: '#5D4037', opacity: 0.6}}>
+            Scroll
+          </span>
+        </button>
       </div>
 
       {/* Branch Selection */}
-      <div className="py-20 px-4 max-w-4xl mx-auto">
+      <div id="branch-selection" className="py-20 px-4 max-w-4xl mx-auto">
         <div className="text-center mb-16">
           <h2 className="text-4xl md:text-5xl font-light text-gray-800 mb-6">
             Choose Your Location
@@ -188,6 +234,7 @@ export default function Home() {
           </div>
         </div>
       </div>
-    </div>
+      </div>
+    </>
   );
 }

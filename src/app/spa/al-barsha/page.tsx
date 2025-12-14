@@ -1,8 +1,10 @@
 "use client";
 
 import Link from "next/link";
-import { ArrowLeft, Clock, Phone, MapPin, Star, Instagram } from "lucide-react";
+import { ArrowLeft, Clock, Phone, MapPin, Star, Instagram, ChevronDown, ChevronUp } from "lucide-react";
 import { useState } from "react";
+import LocalBusinessSchema from "../../components/LocalBusinessSchema";
+import BreadcrumbSchema from "../../components/BreadcrumbSchema";
 
 interface ServiceItem {
   name: string;
@@ -105,33 +107,53 @@ const services: ServiceCategory[] = [
 
 const reviews = [
   {
-    name: "Sarah M.",
+    name: "Rasha Rteil",
     rating: 5,
-    text: "Absolutely wonderful experience! The staff is professional and the treatments are exceptional. The Al Barsha location is beautifully designed and so relaxing.",
-    treatment: "Sultana Royal Facial"
+    text: "I've tried almost every high end Hammam in Dubai, such as The One and Only Mirage, Jumeirah Zabeel, Talees Spa, Atlantis and every other 4-5 star hotel. I am not interested in the fancy architecture of the space and the massive hammam room which can host 10-15 women, or the lavish price and this BS, which many women care about in Dubai.\n\nFrom my experience in Hammam's this is by far the best one when it comes to, price, output, friendliness, and authenticity!!!!!\n\nSultana Spa puts effort in the technique of the scrubbing, the steam room is cozy but the steam is on point! And my favorite about this place is the spacious and full marble treatment room.\n\nThe space of the overall place is not big, but it's the treatment that has left me dropping all places moving forward and repeating my visit!\n\nMy hammam lady was Khadija, nice, strong hands, quick, and determined to get every inch of me stripped from dead skin! And she succeeded.\n\nThank you Sultana Spa!!!!",
+    treatment: "Traditional Hammam"
   },
   {
-    name: "Aisha K.",
+    name: "Salma",
     rating: 5,
-    text: "Best spa in Dubai! I&apos;ve been coming here for years and they never disappoint. The Golden Glow treatment is my favorite.",
-    treatment: "Golden Glow Body Treatment"
+    text: "Excellent experience and very nice Hammam. I would highly recommend it. The staff were incredibly nice from Fatima-Ezzahra that welcome us in the spa to the amazing ladies who did the Moroccan bath for us. Nezha did my Moroccan bath and she was just amazing. I feel so refreshed and relaxed. Definitely ask for Nezha when you go. She is the best !!",
+    treatment: "Moroccan Hammam"
   },
   {
-    name: "Emma L.",
+    name: "Hanan El Sharif",
     rating: 5,
-    text: "Perfect place for a girls&apos; day out. We did the Mother &amp; Daughter package and loved every minute of it. Highly recommended!",
-    treatment: "Mother & Daughter Package"
+    text: "What words can I say to describe this spectacular authentic Moroccan spa. Sultana has been in UAE for 14+ years now and is still going strong. Yet I just discovered their original branch in Barsha this week. My mom and I had a Moroccan Hammam with Thuraya she was short of amazing, she was fantastic and I absolutely loved her. We had our massage with Siri and she is fabulous, went in with so much tension and came out another person.\n\nIn short, sultana is my favourite place for a self care and pamper day, their ambience is so relaxing and the entire staff are so friendly, respectful and amazing at what they do. They always have offers as well which is an added benefit. You won't regret coming here one bit.",
+    treatment: "Moroccan Hammam & Massage"
   },
 ];
 
 export default function AlBarshaPage() {
   const [activeCategory, setActiveCategory] = useState("Hammam");
+  const [expandedReview, setExpandedReview] = useState<string | null>(null);
 
   const activeServices = services.find(service => service.category === activeCategory);
   const serviceCategories = services.map(service => service.category);
 
   return (
-    <div className="min-h-screen bg-white">
+    <>
+      <LocalBusinessSchema
+        name="Sultana Spa Al Barsha"
+        description="Luxury wellness sanctuary in the heart of Al Barsha, Dubai. Premium hammam treatments, relaxing massages, facials, hair services, and nail care."
+        url="https://sultanaspa.com/spa/al-barsha"
+        telephone="+97143928242"
+        address={{
+          addressLocality: "Al Barsha",
+          addressRegion: "Dubai",
+          addressCountry: "AE"
+        }}
+        priceRange="$$"
+      />
+      <BreadcrumbSchema
+        items={[
+          { name: "Home", url: "https://sultanaspa.com" },
+          { name: "Al Barsha", url: "https://sultanaspa.com/spa/al-barsha" }
+        ]}
+      />
+      <div className="min-h-screen bg-white">
       {/* Header */}
       <div className="py-6 px-4" style={{background: 'linear-gradient(to right, #F8F4EF, #C4A484)'}}>
         <div className="max-w-6xl mx-auto">
@@ -188,46 +210,50 @@ export default function AlBarshaPage() {
               </div>
               <div className="p-6">
                 <div className="grid gap-6">
-                  {activeServices.items.map((service: ServiceItem) => (
-                    <div key={service.name} className="flex flex-col md:flex-row md:justify-between md:items-center p-4 rounded-xl hover:bg-opacity-50 transition-colors" style={{border: '1px solid #F8F4EF', backgroundColor: 'rgba(248, 244, 239, 0.3)'}}>
-                      <div className="flex-1">
-                        <h4 className="text-lg font-medium mb-1" style={{color: '#5D4037'}}>{service.name}</h4>
-                        <p className="mb-2 text-sm" style={{color: '#A78A7F'}}>{service.description}</p>
-                        {service.name !== "Add-on Loofa" && !service.priceOptions && (
-                          <p className="flex items-center text-sm" style={{color: '#A78A7F'}}>
-                            <Clock className="h-4 w-4 mr-1" />
-                            {service.duration}
-                          </p>
-                        )}
+                  {activeServices.items.map((service: ServiceItem, index: number) => {
+                    const serviceKey = `${service.name}-${service.duration}-${index}`;
+                    
+                    return (
+                      <div key={serviceKey} className="flex flex-col md:flex-row md:justify-between md:items-center p-4 rounded-xl hover:bg-opacity-50 transition-colors" style={{border: '1px solid #F8F4EF', backgroundColor: 'rgba(248, 244, 239, 0.3)'}}>
+                        <div className="flex-1">
+                          <h4 className="text-lg font-medium mb-1" style={{color: '#5D4037'}}>{service.name}</h4>
+                          <p className="mb-2 text-sm" style={{color: '#A78A7F'}}>{service.description}</p>
+                          {service.name !== "Add-on Loofa" && !service.priceOptions && (
+                            <p className="flex items-center text-sm" style={{color: '#A78A7F'}}>
+                              <Clock className="h-4 w-4 mr-1" />
+                              {service.duration}
+                            </p>
+                          )}
+                        </div>
+                        <div className="mt-4 md:mt-0 md:ml-6 flex flex-col md:items-end">
+                          <p className="text-2xl font-bold mb-2" style={{color: '#5D4037'}}>{service.price}</p>
+                          {service.priceOptions && (
+                            <p className="text-xs md:text-sm mb-3 text-right" style={{color: '#A78A7F'}}>
+                              {service.priceOptions.split('|').map((option, optIndex, array) => (
+                                <span key={optIndex}>
+                                  {option}
+                                  {optIndex < array.length - 1 && (
+                                    <span className="font-bold"> | </span>
+                                  )}
+                                </span>
+                              ))}
+                            </p>
+                          )}
+                          {service.name !== "Add-on Loofa" && (
+                            <a 
+                              href="https://sultanaspa.zenoti.com/webstoreNew/services"
+                              target="_blank"
+                              rel="noopener noreferrer"
+                              className="text-white font-medium py-2 px-4 rounded-full transition-colors duration-200 text-sm hover:opacity-90 inline-block"
+                              style={{backgroundColor: '#5D4037'}}
+                            >
+                              Book Now
+                            </a>
+                          )}
+                        </div>
                       </div>
-                      <div className="mt-4 md:mt-0 md:ml-6 flex flex-col md:items-end">
-                        <p className="text-2xl font-bold mb-2" style={{color: '#5D4037'}}>{service.price}</p>
-                        {service.priceOptions && (
-                          <p className="text-xs md:text-sm mb-3 text-right" style={{color: '#A78A7F'}}>
-                            {service.priceOptions.split('|').map((option, index, array) => (
-                              <span key={index}>
-                                {option}
-                                {index < array.length - 1 && (
-                                  <span className="font-bold"> | </span>
-                                )}
-                              </span>
-                            ))}
-                          </p>
-                        )}
-                        {service.name !== "Add-on Loofa" && (
-                          <a 
-                            href="https://sultanaspa.zenoti.com/webstoreNew/services"
-                            target="_blank"
-                            rel="noopener noreferrer"
-                            className="text-white font-medium py-2 px-4 rounded-full transition-colors duration-200 text-sm hover:opacity-90 inline-block"
-                            style={{backgroundColor: '#5D4037'}}
-                          >
-                            Book Now
-                          </a>
-                        )}
-                      </div>
-                    </div>
-                  ))}
+                    );
+                  })}
                 </div>
               </div>
             </div>
@@ -377,24 +403,53 @@ export default function AlBarshaPage() {
         <div className="max-w-6xl mx-auto">
           <div className="text-center mb-12">
             <h3 className="text-4xl font-light mb-4" style={{color: '#5D4037'}}>What Our Clients Say</h3>
-            <p className="text-lg" style={{color: '#A78A7F'}}>Real experiences from our valued guests</p>
+            <p className="text-lg" style={{color: '#A78A7F'}}>Real experiences from our valued guests - Google Reviews</p>
           </div>
           
           <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
-            {reviews.map((review) => (
-              <div key={review.name} className="bg-white rounded-2xl p-8 shadow-lg hover:shadow-xl transition-shadow" style={{border: '1px solid #C4A484'}}>
-                <div className="flex justify-center mb-4">
-                  {[...Array(review.rating)].map((_, i) => (
-                    <Star key={i} className="h-5 w-5 fill-current" style={{color: '#C4A484'}} />
-                  ))}
+            {reviews.map((review, index) => {
+              const reviewKey = `${review.name}-${index}`;
+              const isExpanded = expandedReview === reviewKey;
+              const previewLength = 200;
+              const needsExpansion = review.text.length > previewLength;
+              const displayText = isExpanded || !needsExpansion 
+                ? review.text 
+                : review.text.substring(0, previewLength) + "...";
+              
+              return (
+                <div key={reviewKey} className="bg-white rounded-2xl p-8 shadow-lg hover:shadow-xl transition-shadow" style={{border: '1px solid #C4A484'}}>
+                  <div className="flex justify-center mb-4">
+                    {[...Array(review.rating)].map((_, i) => (
+                      <Star key={i} className="h-5 w-5 fill-current" style={{color: '#C4A484'}} />
+                    ))}
+                  </div>
+                  <p className="italic mb-4 leading-relaxed whitespace-pre-line" style={{color: '#A78A7F'}}>&ldquo;{displayText}&rdquo;</p>
+                  {needsExpansion && (
+                    <button
+                      onClick={() => setExpandedReview(isExpanded ? null : reviewKey)}
+                      className="flex items-center gap-2 text-sm font-medium mb-4 transition-colors hover:opacity-80"
+                      style={{color: '#5D4037'}}
+                    >
+                      {isExpanded ? (
+                        <>
+                          <ChevronUp className="h-4 w-4" />
+                          Read Less
+                        </>
+                      ) : (
+                        <>
+                          <ChevronDown className="h-4 w-4" />
+                          Read More
+                        </>
+                      )}
+                    </button>
+                  )}
+                  <div className="text-center">
+                    <p className="font-medium" style={{color: '#5D4037'}}>{review.name}</p>
+                    <p className="text-sm" style={{color: '#A78A7F'}}>{review.treatment}</p>
+                  </div>
                 </div>
-                <p className="italic mb-4 leading-relaxed" style={{color: '#A78A7F'}}>&ldquo;{review.text}&rdquo;</p>
-                <div className="text-center">
-                  <p className="font-medium" style={{color: '#5D4037'}}>{review.name}</p>
-                  <p className="text-sm" style={{color: '#A78A7F'}}>{review.treatment}</p>
-                </div>
-              </div>
-            ))}
+              );
+            })}
           </div>
         </div>
       </div>
@@ -437,6 +492,7 @@ export default function AlBarshaPage() {
           </div>
         </div>
       </div>
-    </div>
+      </div>
+    </>
   );
 } 

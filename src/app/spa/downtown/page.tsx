@@ -1,8 +1,10 @@
 "use client";
 
 import Link from "next/link";
-import { ArrowLeft, Clock, Phone, MapPin, Star, Instagram, ChevronDown } from "lucide-react";
+import { ArrowLeft, Clock, Phone, MapPin, Star, Instagram, ChevronDown, ChevronUp } from "lucide-react";
 import { useState } from "react";
+import LocalBusinessSchema from "../../components/LocalBusinessSchema";
+import BreadcrumbSchema from "../../components/BreadcrumbSchema";
 
 interface ServiceItem {
 	name: string;
@@ -31,18 +33,12 @@ const services: ServiceCategory[] = [
 	{
 		category: "Massage",
 		items: [
-			{ name: "Energizing Deep Tissue Massage by Alteara Bio", duration: "1h", price: "AED 400", description: "Acupressure and deep techniques. This energizing massage is a deeply invigorating treatment that revitalizes the body, alleviates stiffness, and releases tension by stimulating energy flow through the muscles." },
-			{ name: "Energizing Deep Tissue Massage by Alteara Bio", duration: "1h 30m", price: "AED 495", description: "Acupressure and deep techniques. This energizing massage is a deeply invigorating treatment that revitalizes the body, alleviates stiffness, and releases tension by stimulating energy flow through the muscles." },
-			{ name: "White - Pure Massage Lymphatic Drainage by Alteara Bio", duration: "1h", price: "AED 395", description: "Lymphatic drainage movements. A purifying massage that uses slow, rhythmic movements to promote lymph circulation, remove toxins, and restore a deep feeling of lightness and clarity." },
-			{ name: "White - Pure Massage Lymphatic Drainage by Alteara Bio", duration: "1h 30m", price: "AED 495", description: "Lymphatic drainage movements. A purifying massage that uses slow, rhythmic movements to promote lymph circulation, remove toxins, and restore a deep feeling of lightness and clarity." },
+			{ name: "Energizing Deep Tissue Massage by Alteara Bio", duration: "Multiple", price: "From AED 400", description: "Acupressure and deep techniques. This energizing massage is a deeply invigorating treatment that revitalizes the body, alleviates stiffness, and releases tension by stimulating energy flow through the muscles.", priceOptions: "1h - AED 400|1h 30m - AED 495" },
+			{ name: "White - Pure Massage Lymphatic Drainage by Alteara Bio", duration: "Multiple", price: "From AED 395", description: "Lymphatic drainage movements. A purifying massage that uses slow, rhythmic movements to promote lymph circulation, remove toxins, and restore a deep feeling of lightness and clarity.", priceOptions: "1h - AED 395|1h 30m - AED 495" },
 			{ name: "Sensory Awakening Candle Massage by MarocMaroc", duration: "1h 15m", price: "AED 650", description: "Relax, balance, and soothe. Inspired by ancient Moroccan secrets, this warm candle massage melts into oil to nourish, soothe, and rejuvenate the body with amber, vanilla, and musk." },
-			{ name: "Serenity Massage Relaxation by Alteara Bio", duration: "30m", price: "AED 250", description: "Soothing light strokes. A gentle relaxation massage designed to calm the body and mind, reduce stress, and promote emotional balance and inner peace." },
-			{ name: "Serenity Massage Relaxation by Alteara Bio", duration: "1h", price: "AED 395", description: "Soothing light strokes. A gentle relaxation massage designed to calm the body and mind, reduce stress, and promote emotional balance and inner peace." },
-			{ name: "Serenity Massage Relaxation by Alteara Bio", duration: "1h 30m", price: "AED 495", description: "Soothing light strokes. A gentle relaxation massage designed to calm the body and mind, reduce stress, and promote emotional balance and inner peace." },
-			{ name: "Hotstone Serenity Massage", duration: "1h", price: "AED 450", description: "Warm stone therapy. The combination of warm volcanic stones and soft strokes melts away stress and muscle tension, promoting inner tranquility and physical harmony." },
-			{ name: "Hotstone Serenity Massage", duration: "1h 30m", price: "AED 595", description: "Warm stone therapy. The combination of warm volcanic stones and soft strokes melts away stress and muscle tension, promoting inner tranquility and physical harmony." },
-			{ name: "Emerald - Oxygenating Thai Massage by Alteara Bio", duration: "1h", price: "AED 395", description: "Includes stretching. A revitalizing fusion of Thai-inspired stretches and Alteara oils that promotes circulation, flexibility, and oxygen flow to refresh body and mind." },
-			{ name: "Emerald - Oxygenating Thai Massage by Alteara Bio", duration: "1h 30m", price: "AED 495", description: "Includes stretching. A revitalizing fusion of Thai-inspired stretches and Alteara oils that promotes circulation, flexibility, and oxygen flow to refresh body and mind." },
+			{ name: "Serenity Massage Relaxation by Alteara Bio", duration: "Multiple", price: "From AED 250", description: "Soothing light strokes. A gentle relaxation massage designed to calm the body and mind, reduce stress, and promote emotional balance and inner peace.", priceOptions: "30m - AED 250|1h - AED 395|1h 30m - AED 495" },
+			{ name: "Hotstone Serenity Massage", duration: "Multiple", price: "From AED 450", description: "Warm stone therapy. The combination of warm volcanic stones and soft strokes melts away stress and muscle tension, promoting inner tranquility and physical harmony.", priceOptions: "1h - AED 450|1h 30m - AED 595" },
+			{ name: "Emerald - Oxygenating Thai Massage by Alteara Bio", duration: "Multiple", price: "From AED 395", description: "Includes stretching. A revitalizing fusion of Thai-inspired stretches and Alteara oils that promotes circulation, flexibility, and oxygen flow to refresh body and mind.", priceOptions: "1h - AED 395|1h 30m - AED 495" },
 			{ name: "Blissful Bloom Pregnancy Massage with Argan", duration: "1h", price: "AED 400", description: "Prenatal comfort and relaxation. A gentle, supportive massage tailored for mothers-to-be using nourishing Argan oil to relieve tension, reduce swelling, and promote total relaxation." },
 			{ name: "Access Bars", duration: "1h", price: "AED 600", description: "The access bars is 32 points on the head which when activated can help facilitate reduction in stress and trauma throughout the body and increase positive attitudes toward life. When lightly touched, the bars points stimulate a positive neurological response inside the recipient. This appears to trigger the body's natural ability to heal and facilitate the physiological changes required for greater wellbeing. The session normally lasts 60 to 90 minutes and feels like a gentle head massage." },
 			{ name: "In-Chair Foot Massage", duration: "20m", price: "AED 95", description: "A relaxing foot massage performed while seated, focusing on pressure points to relieve fatigue and improve circulation. This treatment soothes tired feet, restores comfort, and leaves you feeling refreshed and re-energized." },
@@ -241,22 +237,83 @@ const services: ServiceCategory[] = [
 			{ name: "Balayage / Highlights / Ombre", duration: "4h", price: "AED 1999", description: "A bespoke lightening technique combining balayage, contouring, and air touch for soft, multidimensional color transitions. Ideal for creating a modern, sun-kissed look with depth and movement." },
 		]
 	},
+	{
+		category: "Packages",
+		items: [
+			{ name: "Deep Clean & Glow Lift - 5 Sessions", duration: "60m per session", price: "AED 1595", description: "A rejuvenating facial designed to lift, firm, and brighten the skin. Combines deep cleansing, exfoliation, and lifting massage techniques to improve circulation, boost radiance, and restore a youthful glow. Ideal for tired or dull skin needing instant freshness and vitality. (319 AED per session)" },
+			{ name: "Deep Clean & Glow Lift - 8 Sessions", duration: "60m per session", price: "AED 2500", description: "A rejuvenating facial designed to lift, firm, and brighten the skin. Combines deep cleansing, exfoliation, and lifting massage techniques to improve circulation, boost radiance, and restore a youthful glow. Ideal for tired or dull skin needing instant freshness and vitality. (313 AED per session)" },
+			{ name: "Serenity Massage Relaxation by Alteara Bio - 5 Sessions", duration: "60m per session", price: "AED 1500", description: "Soothing light strokes. A gentle relaxation massage designed to calm the body and mind, reduce stress, and promote emotional balance and inner peace. (300 AED per session)" },
+			{ name: "Serenity Massage Relaxation by Alteara Bio - 7 Sessions", duration: "90m per session", price: "AED 2475", description: "Extended relaxation therapy with soothing light strokes. Calms body and mind, reduces stress, and promotes emotional balance and inner peace. (354 AED per session)" },
+			{ name: "Traditional Hammam - 7 Sessions", duration: "60m per session", price: "AED 1750", description: "Experience a rejuvenating Moroccan ritual. Black soap treatment softens and nourishes your skin. Steam relaxation opens pores for deep cleansing. Full-body exfoliation with Moroccan lufa gloves leaves your skin silky smooth. Hair wash with nourishing shampoo refreshes your hair. Clay mask revitalizes your body for a radiant glow. (250 AED per session)" },
+			{ name: "Turkish Hammam - 5 Sessions", duration: "60m per session", price: "AED 1800", description: "Traditional Turkish bathing method employing warm steam room techniques for thorough cleansing and exfoliation. Includes overall scrub with white soap and kesse mitt, followed by a gentle foam massage. (360 AED per session)" },
+			{ name: "Argan Detox Glow - 6 Sessions", duration: "120m per session", price: "AED 2800", description: "A purifying and revitalizing ritual designed to deeply cleanse and nourish the body and hair. Includes 75-minute Detox Hammam enriched with argan and natural ingredients to remove impurities and restore softness, followed by 45-minute blow-dry for smooth, shiny, and refreshed hair. (467 AED per session)" },
+			{ name: "Royal Hammam - 5 Sessions", duration: "90m per session", price: "AED 2600", description: "Experience intense hydration with our Royal Hammam. Includes organic black soap and steam, exfoliation with Moroccan loofah, nourishing hair mask, deeply moisturizing almond and honey scrub with argan oil, honey and verbena body mask, and 15-minute massage. Ideal for dry skin, offering deep hydration and revitalization. (520 AED per session)" },
+			{ name: "Blow Dry Short Hair - 10 Sessions", duration: "30m per session", price: "AED 750", description: "Classic blow-dry using a round brush to smooth, shape, and add volume. Perfect for achieving a sleek, bouncy, and salon-fresh finish with long-lasting shine. (75 AED per session)" },
+			{ name: "Blow Dry Medium Hair - 10 Sessions", duration: "35m per session", price: "AED 850", description: "Classic blow-dry using a round brush to smooth, shape, and add volume. Perfect for achieving a sleek, bouncy, and salon-fresh finish with long-lasting shine. (85 AED per session)" },
+			{ name: "Blow Dry Long Hair - 10 Sessions", duration: "45m per session", price: "AED 960", description: "Classic blow-dry using a round brush to smooth, shape, and add volume. Perfect for achieving a sleek, bouncy, and salon-fresh finish with long-lasting shine. (96 AED per session)" },
+			{ name: "Sultana Nourishing Hair Oil Treatment - 5 Sessions", duration: "45m per session", price: "AED 1000", description: "Targeted scalp and hair-loss treatment designed to stimulate roots, strengthen weak hair, and improve overall scalp health. Uses nourishing oils and massage techniques to boost circulation, reduce hair fall, and promote healthier, stronger hair growth. (200 AED per session)" },
+			{ name: "Sultana Nourishing Hair Oil Treatment - 10 Sessions", duration: "45m per session", price: "AED 1750", description: "Targeted scalp and hair-loss treatment designed to stimulate roots, strengthen weak hair, and improve overall scalp health. Uses nourishing oils and massage techniques to boost circulation, reduce hair fall, and promote healthier, stronger hair growth. The 10-session program provides continuous stimulation and long-term support for thinning or weak hair. (175 AED per session)" },
+			{ name: "Kérastase Caviar Protocol - 5 Sessions", duration: "40m per session", price: "AED 2200", description: "Ultimate luxury hair repair using concentrated caviar-infused actives to deeply nourish, strengthen, and revive damaged or dry hair from root to tip. Each session delivers intense hydration, improved softness, and visible shine. The 5-session program provides long-lasting repair, restoring scalp health and transforming hair into smoother, stronger, and more radiant strands. (440 AED per session)" },
+			{ name: "Kérastase Fusio Dose - 5 Sessions", duration: "40m per session", price: "AED 1400", description: "Instant, customized hair treatment designed to target your hair's specific needs. Delivers deep nourishment, shine, strength, and hydration using concentrated boosters and active ingredients. Each session transforms the hair instantly with visible results from the first treatment. The 5-session program enhances long-term repair, smoothness, and overall hair health. (280 AED per session)" },
+			{ name: "Kérastase Première - 5 Sessions", duration: "40m per session", price: "AED 1400", description: "Professional in-salon treatment designed to deeply repair, detoxify, and restore damaged hair — especially hair weakened by hard water, chemical processing, coloring, or bleaching. Removes mineral buildup and rebuilds hair structure from within, revitalizing hair fiber, restoring strength, softness, and shine. The 5-session program ensures progressive, long-term repair for lasting results. (280 AED per session)" },
+			{ name: "Tokio Inkarami Treatment - 5 Sessions", duration: "55m per session", price: "AED 4200", description: "Premium Japanese deep-repair treatment designed to rebuild and strengthen damaged hair from the inside out. Uses advanced INKARAMI technology with keratin, amino acids, and proteins to restore softness, shine, and elasticity while delivering long-lasting moisture and protection. The 5-session program provides progressive repair and transforms weak, dry, or chemically treated hair. (840 AED per session)" },
+			{ name: "Root Color - 5 Sessions", duration: "45m per session", price: "AED 1000", description: "Professional root color service designed to maintain consistent, fresh-looking roots with every visit. Helps keep hair color even, covers grey hair effectively, and ensures a clean and polished look. Ideal for clients who want regular touch-ups and long-lasting color maintenance. (200 AED per session)" },
+			{ name: "Root Color Ammonia-Free - 5 Sessions", duration: "45m per session", price: "AED 1150", description: "Gentle, ammonia-free root color service for clients who prefer a softer, less harsh formula. Delivers natural, even root coverage without strong odor, irritation, or damage to the hair. The 5-session package ensures regular touch-ups, smooth color maintenance, and a fresh, healthy look at every visit. (230 AED per session)" },
+			{ name: "Express Manicure - 5 Sessions", duration: "40m per session", price: "AED 350", description: "Quick and refreshing manicure that includes nail shaping, cuticle care, and polish application. Ideal for keeping hands neat, clean, and beautifully groomed in less time. (70 AED per session)" },
+			{ name: "Express Pedicure - 5 Sessions", duration: "60m per session", price: "AED 410", description: "Quick and refreshing pedicure that includes nail shaping, cuticle care, and polish application. Perfect for maintaining neat, clean, and beautiful feet in less time. (82 AED per session)" },
+		]
+	},
 ];
 
 const reviews = [
-	{ name: "Sarah M.", rating: 5, text: "Absolutely wonderful experience! The staff is professional and the treatments are exceptional. The Downtown location is beautifully designed and so relaxing.", treatment: "Sultana Royal Facial" },
-	{ name: "Aisha K.", rating: 5, text: "Best spa in Dubai! I've been coming here for years and they never disappoint. The Golden Glow treatment is my favorite.", treatment: "Golden Glow Body Treatment" },
-	{ name: "Emma L.", rating: 5, text: "Perfect place for a girls' day out. We did the Mother & Daughter package and loved every minute of it. Highly recommended!", treatment: "Mother & Daughter Package" },
+	{ 
+		name: "Fatima", 
+		rating: 5, 
+		text: "Had such a lovely experience getting my nails done here thank you Rosy! The Spa very clean, relaxing and beautifully set up. The staff were friendly and professional they paid great attention to detail and made sure I was comfortable throughout. I am in love with how my nails turned out. Highly recommend this place if you're looking for quality service and a pampering experience. Will definitely be back.", 
+		treatment: "Nail Services" 
+	},
+	{ 
+		name: "Aarna Sahai", 
+		rating: 5, 
+		text: "Amazing experience! I went in for the Signature Moroccon Hammam, and Amina literally gave me fresh, new skin! Amina is just fabulous at her work! And she is so sweet 💕 Right from the entry to the whole experience everything was great. Manita did the massage for my aunt- the best massage ever she has got!🤩 I am truly so happy with their services and hospitality, bonus for the moroccon tea, accentuates the whole experience!\n\nIf you are in downtown, dont even think twice about visiting them. My go to now!", 
+		treatment: "Signature Moroccan Hammam" 
+	},
+	{ 
+		name: "Hanane Ezzaki", 
+		rating: 5, 
+		text: "Today, my visit to Sultana was one of the most beautiful experiences I've had 💖🌿. I did a traditional Moroccan hammam with Ikram, and she was absolutely wonderful polite, always smiling, and making sure I was comfortable every moment. From the very start, I could feel her care and dedication to her work, and that truly made the experience special. The place itself is stunning, extremely clean, with a calm and relaxing atmosphere, and the décor gives a sense of both luxury and warmth. All the staff are so kind and professional, welcoming you with a smile as if you're an important guest. I sincerely thank Ikram for her excellent service and thank Sultana's management for maintaining such a high standard of quality. I will definitely come back again and again, and I highly recommend Sultana to anyone looking for real relaxation and a luxurious experience 🌸💆‍♀️.", 
+		treatment: "Traditional Moroccan Hammam" 
+	},
 ];
 
 export default function DowntownPage() {
 	const [activeCategory, setActiveCategory] = useState("Hammam");
 	const [openBookingFor, setOpenBookingFor] = useState<string | null>(null);
+	const [expandedReview, setExpandedReview] = useState<string | null>(null);
 
 	const activeServices = services.find(service => service.category === activeCategory);
 	const serviceCategories = services.map(service => service.category);
 
 	return (
+		<>
+			<LocalBusinessSchema
+				name="Sultana Spa Downtown"
+				description="Luxury wellness and beauty spa in Downtown Dubai. Premium hammam rituals, therapeutic massages, hydrafacial treatments, professional hair services, and nail care."
+				url="https://sultanaspa.com/spa/downtown"
+				telephone="+97145652323"
+				address={{
+					addressLocality: "Downtown Dubai",
+					addressRegion: "Dubai",
+					addressCountry: "AE"
+				}}
+				priceRange="$$"
+			/>
+			<BreadcrumbSchema
+				items={[
+					{ name: "Home", url: "https://sultanaspa.com" },
+					{ name: "Downtown", url: "https://sultanaspa.com/spa/downtown" }
+				]}
+			/>
 		<div className="min-h-screen bg-white">
 			{/* Header */}
 			<div className="py-6 px-4" style={{background: 'linear-gradient(to right, #F8F4EF, #C4A484)'}}>
@@ -536,20 +593,49 @@ export default function DowntownPage() {
 					</div>
 					
 					<div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
-						{reviews.map((review) => (
-							<div key={review.name} className="bg-white rounded-2xl p-8 shadow-lg hover:shadow-xl transition-shadow" style={{border: '1px solid #C4A484'}}>
-								<div className="flex justify-center mb-4">
-									{[...Array(review.rating)].map((_, i) => (
-										<Star key={i} className="h-5 w-5 fill-current" style={{color: '#C4A484'}} />
-									))}
+						{reviews.map((review, index) => {
+							const reviewKey = `${review.name}-${index}`;
+							const isExpanded = expandedReview === reviewKey;
+							const previewLength = 200;
+							const needsExpansion = review.text.length > previewLength;
+							const displayText = isExpanded || !needsExpansion 
+								? review.text 
+								: review.text.substring(0, previewLength) + "...";
+							
+							return (
+								<div key={reviewKey} className="bg-white rounded-2xl p-8 shadow-lg hover:shadow-xl transition-shadow" style={{border: '1px solid #C4A484'}}>
+									<div className="flex justify-center mb-4">
+										{[...Array(review.rating)].map((_, i) => (
+											<Star key={i} className="h-5 w-5 fill-current" style={{color: '#C4A484'}} />
+										))}
+									</div>
+									<p className="italic mb-4 leading-relaxed whitespace-pre-line" style={{color: '#A78A7F'}}>&ldquo;{displayText}&rdquo;</p>
+									{needsExpansion && (
+										<button
+											onClick={() => setExpandedReview(isExpanded ? null : reviewKey)}
+											className="flex items-center gap-2 text-sm font-medium mb-4 transition-colors hover:opacity-80"
+											style={{color: '#5D4037'}}
+										>
+											{isExpanded ? (
+												<>
+													<ChevronUp className="h-4 w-4" />
+													Read Less
+												</>
+											) : (
+												<>
+													<ChevronDown className="h-4 w-4" />
+													Read More
+												</>
+											)}
+										</button>
+									)}
+									<div className="text-center">
+										<p className="font-medium" style={{color: '#5D4037'}}>{review.name}</p>
+										<p className="text-sm" style={{color: '#A78A7F'}}>{review.treatment}</p>
+									</div>
 								</div>
-								<p className="italic mb-4 leading-relaxed" style={{color: '#A78A7F'}}>&ldquo;{review.text}&rdquo;</p>
-								<div className="text-center">
-									<p className="font-medium" style={{color: '#5D4037'}}>{review.name}</p>
-									<p className="text-sm" style={{color: '#A78A7F'}}>{review.treatment}</p>
-								</div>
-							</div>
-						))}
+							);
+						})}
 					</div>
 				</div>
 			</div>
@@ -580,7 +666,8 @@ export default function DowntownPage() {
 					</div>
 				</div>
 			</div>
-		</div>
+			</div>
+		</>
 	);
 }
 

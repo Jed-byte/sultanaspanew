@@ -1,6 +1,7 @@
 import Link from "next/link";
 import Image from "next/image";
 import { ArrowLeft } from "lucide-react";
+import BreadcrumbSchema from "../components/BreadcrumbSchema";
 
 export default function AboutPage() {
   const images = [
@@ -93,7 +94,8 @@ export default function AboutPage() {
           </div>
         </div>
       </div>
-    </div>
+      </div>
+    </>
   );
 }
 

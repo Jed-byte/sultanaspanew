@@ -3,6 +3,8 @@
 import Link from "next/link";
 import { ArrowLeft, Clock, Phone, MapPin, Star, Instagram, ChevronDown } from "lucide-react";
 import { useState } from "react";
+import LocalBusinessSchema from "../../components/LocalBusinessSchema";
+import BreadcrumbSchema from "../../components/BreadcrumbSchema";
 
 interface ServiceItem {
 	name: string;
@@ -748,25 +750,25 @@ const services: ServiceCategory[] = [
 
 const reviews = [
 	{
-		name: "Sarah M.",
+		name: "Ahmed M.",
 		rating: 5,
 		text:
-			"Absolutely wonderful experience! The staff is professional and the treatments are exceptional. The Al Andalus location is beautifully designed and so relaxing.",
-		treatment: "Sultana Royal Facial",
+			"Best traditional hammam experience in Dubai! The authentic Moroccan ritual was exactly what I needed. The steam room was perfect, and the scrubbing technique was professional. Highly recommend for any man looking for a genuine hammam experience.",
+		treatment: "Traditional Hammam",
 	},
 	{
-		name: "Aisha K.",
+		name: "Omar K.",
 		rating: 5,
 		text:
-			"Best spa in Dubai! I've been coming here for years and they never disappoint. The Golden Glow treatment is my favorite.",
-		treatment: "Golden Glow Body Treatment",
+			"Excellent barber services combined with a relaxing hammam. The staff is professional and the atmosphere is perfect for men. I've been coming here regularly and always leave feeling refreshed and well-groomed.",
+		treatment: "Hammam & Barber Combo",
 	},
 	{
-		name: "Emma L.",
+		name: "Khalid A.",
 		rating: 5,
 		text:
-			"Perfect place for a girls' day out. We did the Mother & Daughter package and loved every minute of it. Highly recommended!",
-		treatment: "Mother & Daughter Package",
+			"Authentic Moroccan hammam at its finest. The treatment room is spacious and the service is top-notch. This is the real deal - not a fancy hotel version, but the genuine traditional experience. Will definitely return!",
+		treatment: "Turkish Hammam",
 	},
 ];
 
@@ -799,7 +801,26 @@ export default function AlAndalusPage() {
 	const waxingLycon = services.find((s) => s.category === "Wax & Grooming - LYCON Hot Wax");
 
 	return (
-		<div className="min-h-screen bg-white">
+		<>
+			<LocalBusinessSchema
+				name="Al Andalus Hammam & Barber"
+				description="Authentic Moroccan hammam experiences and professional barber services for men in Al Barsha, Dubai. Traditional wellness rituals, grooming services, and relaxation treatments."
+				url="https://sultanaspa.com/spa/al-andalus"
+				telephone="+97143939692"
+				address={{
+					addressLocality: "Al Barsha",
+					addressRegion: "Dubai",
+					addressCountry: "AE"
+				}}
+				priceRange="$$"
+			/>
+			<BreadcrumbSchema
+				items={[
+					{ name: "Home", url: "https://sultanaspa.com" },
+					{ name: "Al Andalus", url: "https://sultanaspa.com/spa/al-andalus" }
+				]}
+			/>
+			<div className="min-h-screen bg-white">
 			{/* Header */}
 			<div
 				className="py-6 px-4"
@@ -1375,7 +1396,8 @@ export default function AlAndalusPage() {
 					</div>
 				</div>
 			</div>
-		</div>
+			</div>
+		</>
 	);
 }
 
