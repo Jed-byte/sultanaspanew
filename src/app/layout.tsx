@@ -21,11 +21,20 @@ export const metadata: Metadata = {
     url: "https://sultanaspa.com",
     siteName: "Sultana Spa",
     type: "website",
+    images: [
+      {
+        url: "https://sultanaspa.com/sultanaspalogo.png",
+        width: 1200,
+        height: 630,
+        alt: "Sultana Spa - Salon • Hammam • Spa",
+      },
+    ],
   },
   twitter: {
     card: "summary_large_image",
     title: "Sultana Spa - Luxury Wellness & Beauty Spa in Dubai",
     description: "Experience luxury wellness at our exclusive Dubai locations.",
+    images: ["https://sultanaspa.com/sultanaspalogo.png"],
   },
 };
 

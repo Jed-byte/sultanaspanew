@@ -20,6 +20,18 @@ export const metadata: Metadata = {
     description: "Al Andalus Hammam & Barber offers authentic Moroccan hammam experiences and professional barber services for men in Dubai.",
     url: "https://sultanaspa.com/spa/al-andalus",
     type: "website",
+    images: [
+      {
+        url: "https://sultanaspa.com/sultanaspalogo.png",
+        width: 1200,
+        height: 630,
+        alt: "Al Andalus Hammam & Barber",
+      },
+    ],
+  },
+  twitter: {
+    card: "summary_large_image",
+    images: ["https://sultanaspa.com/sultanaspalogo.png"],
   },
 };
 

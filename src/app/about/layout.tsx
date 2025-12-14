@@ -18,6 +18,18 @@ export const metadata: Metadata = {
     description: "Discover Sultana Spa's journey in Dubai. Founded with a passion for authentic Moroccan wellness traditions.",
     url: "https://sultanaspa.com/about",
     type: "website",
+    images: [
+      {
+        url: "https://sultanaspa.com/sultanaspalogo.png",
+        width: 1200,
+        height: 630,
+        alt: "About Sultana Spa",
+      },
+    ],
+  },
+  twitter: {
+    card: "summary_large_image",
+    images: ["https://sultanaspa.com/sultanaspalogo.png"],
   },
 };
 

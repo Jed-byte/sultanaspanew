@@ -20,6 +20,18 @@ export const metadata: Metadata = {
     description: "Experience luxury wellness at Sultana Spa Al Barsha. Premium hammam treatments, relaxing massages, and beauty services.",
     url: "https://sultanaspa.com/spa/al-barsha",
     type: "website",
+    images: [
+      {
+        url: "https://sultanaspa.com/sultanaspalogo.png",
+        width: 1200,
+        height: 630,
+        alt: "Sultana Spa Al Barsha",
+      },
+    ],
+  },
+  twitter: {
+    card: "summary_large_image",
+    images: ["https://sultanaspa.com/sultanaspalogo.png"],
   },
 };
 

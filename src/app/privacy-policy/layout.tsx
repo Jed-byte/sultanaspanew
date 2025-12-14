@@ -15,6 +15,18 @@ export const metadata: Metadata = {
     description: "Read Sultana Spa's Privacy Policy and Terms & Conditions.",
     url: "https://sultanaspa.com/privacy-policy",
     type: "website",
+    images: [
+      {
+        url: "https://sultanaspa.com/sultanaspalogo.png",
+        width: 1200,
+        height: 630,
+        alt: "Sultana Spa Privacy Policy",
+      },
+    ],
+  },
+  twitter: {
+    card: "summary_large_image",
+    images: ["https://sultanaspa.com/sultanaspalogo.png"],
   },
   robots: {
     index: true,
