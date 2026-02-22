@@ -1,8 +1,8 @@
 "use client";
 
 import Link from "next/link";
-import { ArrowLeft, Clock, Phone, MapPin, Star, Instagram, ChevronDown } from "lucide-react";
-import { useState } from "react";
+import { ArrowLeft, Clock, Phone, MapPin, Star, Instagram, ChevronDown, ChevronUp } from "lucide-react";
+import { useState, useEffect } from "react";
 import LocalBusinessSchema from "../../components/LocalBusinessSchema";
 import BreadcrumbSchema from "../../components/BreadcrumbSchema";
 
@@ -775,6 +775,13 @@ const reviews = [
 export default function AlAndalusPage() {
 	const [activeCategory, setActiveCategory] = useState("Hammam");
 	const [openBookingFor, setOpenBookingFor] = useState<string | null>(null);
+	const [showBackToTop, setShowBackToTop] = useState(false);
+
+	useEffect(() => {
+		const onScroll = () => setShowBackToTop(window.scrollY > 300);
+		window.addEventListener("scroll", onScroll, { passive: true });
+		return () => window.removeEventListener("scroll", onScroll);
+	}, []);
 
 	const activeServices = services.find(
 		(service) => service.category === activeCategory
@@ -1397,6 +1404,20 @@ export default function AlAndalusPage() {
 				</div>
 			</div>
 			</div>
+
+			{/* Back to top - fixed bottom right when scrolled */}
+			{showBackToTop && (
+				<button
+					type="button"
+					onClick={() => window.scrollTo({ top: 0, behavior: "smooth" })}
+					className="fixed bottom-6 right-6 z-50 flex items-center gap-2 py-3 px-4 rounded-full font-medium text-white shadow-lg transition-all hover:opacity-90 hover:scale-105"
+					style={{ backgroundColor: "#5D4037" }}
+					aria-label="Back to top"
+				>
+					<ChevronUp className="h-5 w-5" />
+					<span>Back to top</span>
+				</button>
+			)}
 		</>
 	);
 }
